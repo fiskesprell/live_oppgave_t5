@@ -1,9 +1,8 @@
-import React from 'react';
 import { useState } from 'react';
 import Student from './Student';
 import './styles/grid.css';
 import { Student as StudentProps } from './types';
-import AddStudentForm from './AddStudent';
+import AddStudentForm from './AddStudentForm';
 
 type GridProps = {
     studentList: StudentProps[]
@@ -47,9 +46,8 @@ export default function Grid(props: GridProps) {
     }
 
     return (
-        <div>
-            <AddStudentForm />
-
+        <div id="gridContainer">
+            <AddStudentForm onAddStudent={onAddStudent}/>
             <section id="studentsGridContainer">
                 <h1>List of students:</h1>
                 <div id="studentsGridCards">

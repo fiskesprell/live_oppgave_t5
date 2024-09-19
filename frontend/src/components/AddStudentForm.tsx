@@ -1,12 +1,10 @@
-import { useState } from 'react';
 import './styles/grid.css';
-import { Student as StudentProps } from './types';
 
 type AddStudentFormProps = {
-    studentList: StudentProps[]
+    onAddStudent: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
-export default function AddStudentForm(onAddStudent) {
+export default function AddStudentForm({ onAddStudent }: AddStudentFormProps) {
 
     return (
         <form onSubmit={onAddStudent}>
