@@ -1,25 +1,16 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import Student from './Student';
 import './styles/grid.css';
 import { Student as StudentProps } from './types';
 import AddStudentForm from './AddStudentForm';
 
 type GridProps = {
-    studentList: StudentProps[]
+    students: any,
+    removeHoveredStudent: (id: string) => void,
+    setStudents: React.Dispatch<React.SetStateAction<StudentProps[]>>
 }
 
-let listOfStudents: StudentProps[] = [
-    {
-        id: "You are not sending in student list correctly.",
-        name: "EPIC FAIL - Grid.tsx"
-    }
-]
-
-export default function Grid(props: GridProps) {
-    const { studentList = listOfStudents } = props;
-
-    let [students, setStudents] = useState<StudentProps[]>(studentList)
-
+export default function Grid( {students , removeHoveredStudent, setStudents } : GridProps ) {
     const onAddStudent = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // Hente form
@@ -52,7 +43,7 @@ export default function Grid(props: GridProps) {
                 <h1>List of students:</h1>
                 <div id="studentsGridCards">
                     {students.map((student) => (
-                        <Student key={student.id} name={student.name} id={student.id}/>
+                        <Student name={student.name} id={student.id} removeHoveredStudent={removeHoveredStudent} />
                     ))}
                 </div>
             </section>

@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import Grid from './components/Grid';
 import { Student as StudentProps } from './components/types'
+import Total from './components/Total';
 
 let listOfStudents: StudentProps[] = [
   {
@@ -19,18 +21,24 @@ let listOfStudents: StudentProps[] = [
       name: "Lisa"
   },
   {
-      id: "student_id_4",
+      id: "student_id_5",
       name: "Maggie"
   }
 ]
 
+
+
 function App() {
+  let [students, setStudents] = useState<StudentProps[]>(listOfStudents)
+
+  const removeHoveredStudent = (id: string) => {
+    setStudents((prevStudents) => prevStudents.filter((student) => student.id !== id))
+  }
+
   return (
     <section>
-      {/* <h1>Start</h1>
-      <Student name="Jan" id="22a" />
-      <Avatar name="Coomer" /> */}
-      <Grid studentList={listOfStudents}/>
+      <Total total={students.length}/>
+      <Grid students={students} removeHoveredStudent={removeHoveredStudent} setStudents={setStudents} />
     </section>
   );
 
