@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, PropsWithChildren } from 'react';
 import Student from './Student';
 import './styles/grid.css';
 import { Student as StudentProps } from './types';
@@ -10,7 +10,11 @@ type GridProps = {
     setStudents: React.Dispatch<React.SetStateAction<StudentProps[]>>
 }
 
-export default function Grid( {students , removeHoveredStudent, setStudents } : GridProps ) {
+export default function Grid(props: Readonly<PropsWithChildren<GridProps>> ) {
+
+    const { students, removeHoveredStudent, setStudents, children} = props;
+
+
     const onAddStudent = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // Hente form
@@ -38,6 +42,7 @@ export default function Grid( {students , removeHoveredStudent, setStudents } : 
 
     return (
         <div id="gridContainer">
+            {children}
             <AddStudentForm onAddStudent={onAddStudent}/>
             <section id="studentsGridContainer">
                 <h1>List of students:</h1>

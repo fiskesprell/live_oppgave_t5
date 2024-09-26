@@ -38,7 +38,9 @@ function App() {
   return (
     <section>
       <Total total={students.length}/>
-      <Grid students={students} removeHoveredStudent={removeHoveredStudent} setStudents={setStudents} />
+      <Grid students={students} removeHoveredStudent={removeHoveredStudent} setStudents={setStudents}>
+          <h2>~Eksempel på bruk av children~</h2>
+      </Grid>
     </section>
   );
 
